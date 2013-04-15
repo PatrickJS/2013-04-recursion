@@ -16,7 +16,7 @@ describe("getElementsByClassName", function(){
       $("body").append($rootElement);
 
       var result = getElementsByClassName("targetClassName");
-      var expectedNodeList = document.getElementsByClassName("targetClassName");
+      var expectedNodeList = Array.prototype.slice.call(document.getElementsByClassName("targetClassName"));
       var equality = _.isEqual(result, expectedNodeList); // why can't we use `===` here?
       expect(equality).toBeTruthy();
 
@@ -25,3 +25,5 @@ describe("getElementsByClassName", function(){
   });
 
 });
+// [4/13/13 4:27:07 PM] Carey W: var expectedNodeList = document.getElementsByClassName("targetClassName");
+// [4/13/13 4:27:28 PM] Carey W: var expectedNodeList = Array.prototype.slice.call(document.getElementsByClassName("targetClassName"));
