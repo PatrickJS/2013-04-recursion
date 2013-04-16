@@ -21,11 +21,11 @@ var stringifyJSON = function(obj) {
       break;
     case 'object':
       result += '{';
+      if (!obj.hasOwnProperty('functions')) {
         for(var key in obj){
-          if (key != 'functions' && key != 'undefined') {
-            result += '' + stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
-          }
+          result += '' + stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
         }
+      }
       result += '}';
       break;
     default:
