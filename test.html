@@ -12,7 +12,12 @@
   <p><div class='somediv'><div class='innerdiv'><span class='targetClassName'>yay</span></div></div></p>
   <script>
   jQuery(function(){
-    console.log('results', getElementsByClassName("targetClassName", document.body));
+    console.log('----what it should look like----');
+    console.log(document.body.querySelectorAll('.targetClassName'));
+    console.log('----what yours looks like----')
+    console.log(getElementsByClassName("targetClassName"));
+    console.log('----start your tests----')
+    getElementsByClassName("targetClassName");
   });
   </script>
 </body>
