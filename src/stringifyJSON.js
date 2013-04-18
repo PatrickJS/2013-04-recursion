@@ -21,7 +21,7 @@ var stringifyJSON = function(obj) {
       break;
     case 'object':
       result += '{';
-      if (!obj.hasOwnProperty('functions')) {
+      if (!obj.hasOwnProperty('undefined')) {
         for(var key in obj){
           result += '' + stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
         }
