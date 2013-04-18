@@ -15,29 +15,20 @@ var htmlStrings = [
   "<p><div class='somediv'><div class='innerdiv'><span class='targetClassName'>yay</span></div></div></p>"
 ];
 
-// Found this on stackoverflow
-Array.prototype.clean = function(deleteValue) {
-  for (var i = 0; i < this.length; i++) {
-    if (this[i] == deleteValue) {
-      this.splice(i, 1);
-      i--;
-    }
-  }
-  return this;
-};
-
 var getElementsByClassName = function(className) {
 var element = arguments[1] || document.body,
     results = [],
     has_class_name = [].indexOf.call(element.classList, className) !== -1,
     children_results = [].map.call(element.children, function(element) {
       return getElementsByClassName(className,element)[0];
+    }).filter(function(e) {
+      return e;
     });
 
 if (has_class_name) {
   results.push(element);
 } else {
-  results = results.concat(children_results).clean();
+  results = results.concat(children_results);
 }
 
 return results;
