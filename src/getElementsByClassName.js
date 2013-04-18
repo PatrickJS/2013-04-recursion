@@ -21,9 +21,7 @@ var element = arguments[1] || document.body,
     has_class_name = [].indexOf.call(element.classList, className) !== -1,
     children_results = [].map.call(element.children, function(element) {
       return getElementsByClassName(className,element)[0];
-    }).filter(function(e) {
-      return e;
-    });
+    }).filter(Boolean);
 
 if (has_class_name) {
   results.push(element);
