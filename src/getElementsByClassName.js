@@ -15,6 +15,7 @@ var htmlStrings = [
   "<p><div class='somediv'><div class='innerdiv'><span class='targetClassName'>yay</span></div></div></p>"
 ];
 
+// Found this on stackoverflow
 Array.prototype.clean = function(deleteValue) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == deleteValue) {
@@ -25,8 +26,8 @@ Array.prototype.clean = function(deleteValue) {
   return this;
 };
 
-var getElementsByClassName = function(className, element) {
-var element = element || document.body;
+var getElementsByClassName = function(className) {
+var element = arguments[1] || document.body;
 var results = [];
 
 children_results = [].map.call(element.children, function(element) {
@@ -34,41 +35,9 @@ children_results = [].map.call(element.children, function(element) {
 });
 if ([].indexOf.call(element.classList, className) !== -1) {
   results.push(element);
-} else if (children_results){
-  results = results.concat(children_results);
+} else {
+  results = results.concat(children_results).clean();
 }
 
-return results.clean();
+return results;
 };
-
-
-// document.body.children[21].children[0].children[0].classList
-// document.body.childNodes[28].childNodes[0].childNodes[0].classList
-
-  // var result = [],
-//       nodes = document.body.childNodes,
-//       initClass,
-//       type = $.type(className);
-
-// if (type === 'string') {
-//   console.log(document.getElementsByClassName("targetClassName"));
-//   console.log('-------kool story---------');
-//   console.log(nodes);
-
-//   initClass = className;
-//   result = getElementsByClassName(nodes);
-// }
-//   for (var i = 0; i < nodes.length; i++) {
-//     if (nodes[i].hasOwnProperty('classList')) {
-//       var hi = [].slice.call(nodes[i].classList);
-
-//       for (var x = 0; x < hi.length; x++) {
-//         if (initClass === hi[x]) {
-//           result.push(nodes[i]);
-//         }
-//       }
-
-//     }
-//   }
-//   console.log(result);
-//   return result;
