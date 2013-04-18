@@ -27,13 +27,14 @@ Array.prototype.clean = function(deleteValue) {
 };
 
 var getElementsByClassName = function(className) {
-var element = arguments[1] || document.body;
-var results = [];
+var element = arguments[1] || document.body,
+    results = [],
+    has_class_name = [].indexOf.call(element.classList, className) !== -1,
+    children_results = [].map.call(element.children, function(element) {
+      return getElementsByClassName(className,element)[0];
+    });
 
-children_results = [].map.call(element.children, function(element) {
-  return getElementsByClassName(className,element)[0];
-});
-if ([].indexOf.call(element.classList, className) !== -1) {
+if (has_class_name) {
   results.push(element);
 } else {
   results = results.concat(children_results).clean();
