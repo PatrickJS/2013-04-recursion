@@ -16,14 +16,13 @@ var htmlStrings = [
 ];
 
 var getElementsByClassName = function(className) {
-var element = arguments[1] || document.body,
-    results = [],
-    has_class_name = [].indexOf.call(element.classList, className) !== -1,
-    children_results = [].map.call(element.children, function(element) {
-      return getElementsByClassName(className,element)[0];
-    }).filter(Boolean);
+var results = [],
+    element = arguments[1] || document.body,
+    traverse_elements = function(element) { return getElementsByClassName(className,element)[0]; },
+    check_class_name = [].indexOf.call(element.classList, className) !== -1,
+    children_results = [].map.call(element.children, traverse_elements).filter(Boolean);
 
-if (has_class_name) {
+if (check_class_name) {
   results.push(element);
 } else {
   results = results.concat(children_results);
