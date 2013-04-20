@@ -1,3 +1,4 @@
+// used for part 1 of stringifyJSON spec
 var validObjects = [
   9,
   null,
@@ -22,7 +23,7 @@ var validObjects = [
   {"a":[],"c": {}, "b": true}
 ];
 
-// used for stringifyJSON spec
+// used for part 1 of stringifyJSON spec
 var weirdObjects = [
   {
     "functions": function(){},
@@ -30,6 +31,24 @@ var weirdObjects = [
   }
 ];
 
+// used for getElementByClassName specs
+var htmlStrings = [
+  "<p class='targetClassName'></p>",
+  "<p class='otherClassName targetClassName'></p>",
+  "<p><p class='targetClassName'></p></p>",
+  "<p><p class='targetClassName'><p class='targetClassName'></p></p></p>",
+  "<p><p></p><p><p class='targetClassName'></p></p></p>",
+  "<p><p class='targetClassName'></p><p class='targetClassName'></p></p>",
+  "<p><div class='somediv'><div class='innerdiv'><span class='targetClassName'>yay</span></div></div></p>"
+];
+
+// used for stringifyJSON and parseJSON specs
+var invalidStrings = [
+  '["foo", "bar"',
+  '["foo", "bar\\"]'
+];
+
+// used for parseJSON specs
 var extraCreditStrings = [
   // escaping
   '["\\\\\\"\\"a\\""]',
@@ -94,10 +113,4 @@ var extraCreditStrings = [
     '              }\r\n' +
     '          }\r\n' +
     '      }\r\n'
-];
-
-// used for stringifyJSON and parseJSON specs
-var invalidStrings = [
-  '["foo", "bar"',
-  '["foo", "bar\\"]'
 ];
